@@ -1,0 +1,15 @@
+[workspace]
+name = "TN13015-Rik-Jan-EP1"
+channels = ["conda-forge"]
+platforms = ["win-64", "osx-arm64", "osx-64", "linux-64"]
+
+[dependencies]
+python = ">=3.11,<3.14"
+numpy = ">=1.26"
+scipy = ">=1.11"
+matplotlib = ">=3.8"
+jupyterlab = ">=4.0"
+ipykernel = ">=6.29"
+
+[tasks]
+lab = "jupyter lab"
