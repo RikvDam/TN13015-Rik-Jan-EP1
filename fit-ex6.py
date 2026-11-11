@@ -6,26 +6,24 @@ q = -1.602176634e-19      # C
 T, uT = 295.0, 1.0        # K
 n, un = 2.0, 0.1
 
-R1, uR1 = 10e3, 3.0       # Ohm, TODO, eigen metingen toevoegen (?)
-R2 = 220.0                # Ohm TODO, eigen metingen toevoegen (?)
-R3 = 100.0                # Ohm TODO, eigen metingen toevoegen (?)
+R1, uR1 =        # Ohm, TODO, eigen metingen toevoegen (?)
+R2, uR2 =         # Ohm TODO, eigen metingen toevoegen (?)
+R3, uR3 =         # Ohm TODO, eigen metingen toevoegen (?)
 f = R3 / (R2 + R3)        # spanningsdeler: U = f * U_bron
 
 u_Ubron = 0.01            # V, TODO uit de handleiding bevestigen , voor nu gegokt
-u_UR = 1e-5               # V, TODO uit de handleiding bevestigen , voor nu gegokt
-
 # Ruwe data, TODO eigen data!
 UD_voorbeeld = np.linspace(0.1, 0.6, 14)
 I_voorbeeld = 1e-9 * np.expm1(19.7 * UD_voorbeeld)
-U_R = I_voorbeeld * R1                         # V, over R1 (5.5 DMM)
-Ubron = (UD_voorbeeld + U_R) / f               # V, spanningsbron (3.5 DMM)
+U_R1 = I_voorbeeld * R1                         # V, over R1 (5.5 DMM)
+Ubron = (UD_voorbeeld + U_R1) / f               # V, spanningsbron (3.5 DMM)
 
 # Bewerkte data
-U_D = f * Ubron - U_R
-I_D = U_R / R1
+U_D = f * Ubron - U_R1
+I_D = U_R1 / R1
 
-u_UD = np.sqrt((f * u_Ubron) ** 2 + u_UR ** 2)
-u_ID = I_D * np.sqrt((u_UR / U_R) ** 2 + (uR1 / R1) ** 2)
+u_UD = np.sqrt((f * u_Ubron) ** 2 + u_UR1 ** 2)
+u_ID = I_D * np.sqrt((u_UR1 / U_R1) ** 2 + (uR1 / R1) ** 2)
 
 #Plotten
 plt.errorbar(U_D, I_D, xerr=u_UD, yerr=u_ID, fmt="o")
